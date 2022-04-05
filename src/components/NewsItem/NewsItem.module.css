@@ -1,0 +1,22 @@
+.table__item {
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.item__body {
+  width: 100%;
+}
+
+.item__image {
+  max-width: 200px;
+}
+
+.item__image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.item__info {
+  flex-grow: 2;
+}

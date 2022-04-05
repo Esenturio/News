@@ -1,0 +1,14 @@
+.topbar__logo {
+  max-width: 100px;
+}
+.topbar__img {
+  width: 100%;
+}
+
+.topbar__profile svg {
+  font-size: 30px;
+}
+
+.topbar__profile svg::after {
+  content: none;
+}

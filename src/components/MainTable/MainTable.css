@@ -1,3 +1,8 @@
 .news-table {
   max-width: 1000px;
 }
+
+.post_img {
+  margin: 0 auto;
+  transform: translate();
+}

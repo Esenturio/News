@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import restorauntSlice from './reducers/restoraunt.reducer'
 import auth from './reducers/auth'
 import newsSlice from './reducers/news'
 

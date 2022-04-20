@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from './Footer/Footer'
 import Topbar from './Topbar/Topbar'
 
 function Layout({children}) {
@@ -8,6 +9,7 @@ function Layout({children}) {
       <div className="wrap__content">
         {children}
       </div>
+      <Footer/>
     </div>
   )
 }

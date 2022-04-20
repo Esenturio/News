@@ -1,3 +1,21 @@
 :root {
-  --red-color: #F54337
+  --red-color: #F54337;
+  --main-color: #9FD4CA;
+  --text-color: #445045;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none !important;
+}
+
+.green {
+  color: var(--main-color);
 }

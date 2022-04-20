@@ -1,35 +1,49 @@
-import React, { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { userAuth } from '../../store/reducers/auth';
 import './Login.css'
-import axios from '../../api/axios';
+import Loader from './../../UI/Loader/Loader';
+import { useCookies } from 'react-cookie';
 
 function Login() {
-
   const [data, setData] = useState({});
+
   const dispatch = useDispatch();
-  const {user} = useSelector(state => state.auth);
+  const {loading} = useSelector(state => state.auth);
   const navigate = useNavigate();
+  const {user} = useSelector(st => st.auth)
+
+  const [cookie, setCookie] = useCookies(['user'])
+
+  let block = <div></div>
+
+  useEffect(() => {
+    if (loading === 'error') {
+      alert('Password or email are invalid')
+    }else if (loading === 'success') {
+      navigate('/')
+    }
+  }, [loading])
+
+  useEffect(() => {
+    if (!user) return;
+    setCookie('user', JSON.stringify(user), {path: '/', maxAge: 36000, sameSite: true})
+  }, [user])
 
   const changeHandler = (e) => {
-    setData({...data, [e.target.name]: e.target.value})
+    setData({...data, [e.target.name]: e.target.value});
   }
 
   const submit = async (e) => {
     e.preventDefault();
     await dispatch(userAuth(data))
-    setTimeout(() => {
-      if (!user) {
-        alert('Password or email invalid')
-      } else {
-        navigate('/')
-      }
-    }, 800)
   }
 
   return (
-    <div className='login mt-3'>
+    <div className='login mt-3 mb-5'>
+      {block}
+      <Loader active={loading === 'loading'}/>
       <form className="form" onSubmit={submit}>
         <div className="form-wrap">
           <label className='form-label' htmlFor="form__email">Email:</label>
@@ -44,7 +58,7 @@ function Login() {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
 export default Login

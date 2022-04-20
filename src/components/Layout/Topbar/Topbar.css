@@ -12,3 +12,88 @@
 .topbar__profile svg::after {
   content: none;
 }
+
+.topbar__nav {
+  font-size: 1.1rem;
+}
+
+.topbar__nav a {
+  text-decoration: none;
+  color: #445045;
+}
+
+.topbar__nav a.active {
+  color: var(--main-color);
+  border-bottom: 5px solid var(--main-color);
+}
+
+.login-btn {
+  text-decoration: none;
+  background-color: var(--main-color);
+  color: white;
+  font-weight: 700;
+  padding: 12px 1rem;
+  border-radius: 8px;
+}
+
+.login-btn:hover {
+  background-color: #8bbeb4;
+  color: white;
+}
+
+.topbar {
+  background-color: white;
+  /* position: sticky; */
+  /* top: 0; */
+  /* z-index: 100000; */
+}
+
+/* .hamburger-react {
+
+} */
+
+@media screen and (max-width: 650px) {
+  .hamburger-react {
+    display: block;
+    z-index: 11;
+  }
+  
+  .topbar__nav {
+    transform: translateY(-300%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #64e0c8b3;
+    transition: .4s;
+    z-index: 10;
+  }
+
+  .topbar__nav.active{
+    transform: translateY(0);
+  }
+
+  .topbar__nav a {
+    padding: 1rem;
+  }
+  
+  .topbar__nav a.active {
+    color: var(--text-color);
+    border: 4px solid var(--text-color);
+  }
+}
+
+
+@media screen and (min-width: 650px) {
+  .hamburger-react {
+    display: none;
+  }
+  .topbar__nav {
+    transform: translateY(0);
+  }
+}

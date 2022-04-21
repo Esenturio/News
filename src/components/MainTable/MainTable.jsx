@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getItemsByCat, newsFetch } from '../../store/reducers/news'
+import { catFetch, getItemsByCat, newsFetch } from '../../store/reducers/news'
 import NewsItem from '../NewsItem/NewsItem'
 import './MainTable.css'
 import PaginationItem from './../PaginaionItem/PaginationItem';
@@ -36,7 +36,7 @@ function MainTable() {
   };
 
   const filterCat = () => {
-    dispatch(getItemsByCat(filter));
+    dispatch(catFetch(filter));
   };
 
   return (

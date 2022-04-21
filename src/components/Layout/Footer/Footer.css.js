@@ -26,10 +26,11 @@ export const Footer = styled.div`
     text-decoration: none;
     display: inline-block;
     font-size: 18px;
+    border-left: 5px solid white;
   }
   
   .footer__nav a.active {
-    border-bottom: 5px solid var(--main-color)
+    border-left-color: var(--main-color);
   }
 
   .footer__title {

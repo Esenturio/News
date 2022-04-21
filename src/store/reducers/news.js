@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "../../api/axios";
-import { asyncThunk, getArray, setLoading, unsetLoading } from "../../helpers/asyncThunk";
-
-export const catFetch = asyncThunk('category/get', 'get', '/api/categories?fields=category');
+import { getArray, setLoading, unsetLoading } from "../../helpers/asyncThunk";
 
 export const newsFetch = createAsyncThunk(
   'news/get',
@@ -13,6 +11,21 @@ export const newsFetch = createAsyncThunk(
       throw new Error()
     }
     return {...res.data, ...res.meta};
+  } catch (error) {
+    return rejectWithValue(error)
+  }
+}
+)
+
+export const catFetch = createAsyncThunk(
+  'news/get/cat',
+  async (cat, {rejectWithValue}) => {
+  try {
+    const res = await axios.get(`/api/news?filters[0][categor][$contains]=${cat}`);
+    if(!res.data) {
+      throw new Error()
+    }
+    return {...res.data,};
   } catch (error) {
     return rejectWithValue(error)
   }
@@ -72,35 +85,29 @@ const newsSlice = createSlice({
       })
       state.filtredData = newData
     },
-    recoverFilter: (state,action) => {
+    recoverFilter: (state) => {
       state.filtredData = state.data
     }
   },
   extraReducers: {
     [catFetch.pending]: (state) =>{
-      setLoading(state, true)
+      setLoading(state, true);
     },
     [catFetch.fulfilled]: (state, action) => {
-      unsetLoading(state, 'success')
-      state.categories = action.payload.data.map(item => {
-        return {
-          id: item.id,
-          category: item.attributes.category
-        }
-      })
+      unsetLoading(state, 'success');
+      state.data = getArray(action.payload.data);
     },
     [catFetch.rejected]: (state) => {
-      unsetLoading(state, 'error')
+      unsetLoading(state, 'error');
     },
     [newsFetch.pending]: (state) =>{
-      setLoading(state, true)
+      setLoading(state, true);
     },
     [newsFetch.fulfilled]: (state, action) => {
       console.log(action.payload);
-      unsetLoading(state, 'success')
+      unsetLoading(state, 'success');
       state.data = getArray(action.payload.data);
       state.meta = action.payload.meta;
-      // state.filtredData = getArray(action.payload.data)
     },
     [newsFetch.rejected]: (state) => {
       unsetLoading(state, 'error')

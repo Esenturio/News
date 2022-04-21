@@ -12,7 +12,7 @@ function Cart({title, thumb, describe, more, variants}) {
         <div className="cart__title h3">
           {title}
         </div>
-        <div className="cart__describe mb-3 text-truncate">
+        <div className="cart__describe mb-3 ">
           {describe}
         </div>
         <div className="cart__more mt-auto">

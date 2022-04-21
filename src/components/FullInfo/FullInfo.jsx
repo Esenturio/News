@@ -100,7 +100,7 @@ function FullInfo() {
       </div>
 
       <div className={`full__info`}>
-        <div className={`${up? 'full__left hover' : 'full__grid row'} p-5`}>
+        <div className={`${up? 'full__left hover' : 'full__grid row'} p-4 `}>
           <div className={`full__item  col ${up ? '' : 'col-8'}`}>
             <div className={`${up ? '' : 'full__title'} h1 full__green`}>
               {item.title}

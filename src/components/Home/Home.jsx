@@ -122,10 +122,12 @@ function Home() {
         <button className="btn btn-primary m-auto" onClick={() => navigate('/news-list')}>Посмотреть все новости</button>
       </div>
       <div className="home__sub border border-1 border-start-none border-end-none">
-        <div className="input-group home__subscribe mb-3 p-5">
-          <input type="text" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Твой email" aria-label="Username" aria-describedby="basic-addon1"/>
-          <button className="btn btn-primary input-group-text" id="basic-addon1" onClick={subscribe}>Подписаться</button>
-        </div>
+        <form action="">
+          <div className="input-group home__subscribe mb-3 p-5">
+            <input type="text" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Твой email" aria-label="Username" aria-describedby="basic-addon1"/>
+            <button className="btn btn-primary input-group-text" id="basic-addon1" onClick={subscribe}>Подписаться</button>
+          </div>
+        </form>
       </div>
     </div>
   );
